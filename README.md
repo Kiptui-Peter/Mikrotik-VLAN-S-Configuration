@@ -34,7 +34,7 @@ I defined the following security zones based on trust levels:
 * **VLAN 30 (Red Team):** High-risk sandbox for penetration testing targets and attack boxes.
 * **VLAN 99 (Management):** A restricted control plane for MikroTik WinBox, Huawei CLI, Proxmox GUI, and UniFi Cloud Key administration.
 
-![MikroTik VLAN Interfaces](3.jpeg)
+![MikroTik VLAN Interfaces](verification/3.jpeg)
 
 ## Phase 3: Layer 3 Services & Addressing
 **Objective:** Automate network provisioning while maintaining logical separation.
@@ -43,7 +43,7 @@ I defined the following security zones based on trust levels:
 I assigned unique Layer 3 Gateways to each VLAN interface (e.g., `10.0.30.1/24` for the Red Team).
 * **Purpose:** To create clear routing boundaries. By placing gateways on the VLAN interfaces rather than the physical ports, the router can route traffic between zones strictly according to Firewall rules.
 
-![MikroTik IP Address Assignments](1.jpeg)
+![MikroTik IP Address Assignments](verification/1.jpeg)
 
 ### 2. Independent DHCP Services
 I stood up separate DHCP servers for each VLAN.
@@ -67,7 +67,7 @@ I configured the Bridge CPU as a "Tagged" member of all VLANs.
 I enabled `vlan-filtering=yes` and `ingress-filtering=yes`.
 * **Purpose:** To enforce strict admission control. The router now actively discards any packet that does not carry a valid VLAN tag or arrive on an authorized port, effectively preventing "VLAN Hopping" attacks.
 
-![MikroTik Bridge Port Configuration](2.jpeg)
+![MikroTik Bridge Port Configuration](verification/2.jpeg)
 
 ## Phase 6: Connectivity & NAT
 **Objective:** Provide controlled internet access without exposing internal topology.
